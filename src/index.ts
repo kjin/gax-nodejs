@@ -35,6 +35,7 @@ import extend from 'extend';
 
 import * as operationsClient from './operations_client';
 import * as routingHeader from './routing_header';
+import {GrpcClient, GrpcClientOptions, GoogleProtoFilesRoot} from './grpc';
 
 export {routingHeader};
 export {constructSettings} from './gax';
@@ -46,7 +47,9 @@ export {PageDescriptor} from './paged_iteration';
 export {createApiCall} from './api_callable';
 export {GrpcClient, GrpcClientOptions, GrpcModule, GoogleProtoFilesRoot, Metadata, MetadataValue, Stub, StubOptions} from './grpc';
 
-import {GrpcClient, GrpcClientOptions} from './grpc';
+const grpc = Object.assign(options => new GrpcClient(options), {
+  GoogleProtoFilesRoot
+});
 
 function lro(options: GrpcClientOptions) {
   options = extend(
